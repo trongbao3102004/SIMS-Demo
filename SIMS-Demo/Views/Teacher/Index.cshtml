@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Teacher>
+
+<h1>Hello World @ViewBag.UserName , you are @ViewBag.Role</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Date of Birth</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.DoB</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary"
+                           href="@Url.Action("Delete","Teacher",new {id=item.Id})">Delete</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+<ul>
+    <li>
+        <a asp-controller="Teacher" asp-action="NewTeacher">New Teacher</a>
+    </li>
+</ul>

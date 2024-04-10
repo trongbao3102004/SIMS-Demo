@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Course>
+<h1>Course Homepage @ViewBag.UserName , you are @ViewBag.Role</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Lecturer</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+
+</table>
+<a asp-action="CreateCourse" asp-controller="Course">Create Course</a>
