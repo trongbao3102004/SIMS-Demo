@@ -1,5 +1,10 @@
 [
   {
+    "Id": 13133,
+    "Name": "SDLC",
+    "Lecturer": 1222
+  },
+  {
     "Id": 134,
     "Name": "Programming",
     "Lecturer": 3

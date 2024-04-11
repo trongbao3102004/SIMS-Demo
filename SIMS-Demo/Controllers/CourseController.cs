@@ -38,16 +38,86 @@ namespace SIMS_IT0602.Controllers
             ViewBag.SelectTeacher = teachers;
             return View();
         }
-
+        public List<Course>? LoadCourseFromFile(string filename)
+        {
+            string readText = System.IO.File.ReadAllText("course.json");
+            return JsonSerializer.Deserialize<List<Course>>(readText);
+        }
+        public ActionResult Index()
+        {
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            courses = LoadCourseFromFile("course.json");
+            return View(courses);
+        }
         public List<Teacher>? LoadTeacherFromFile(string fileName)
         {
             string readText = System.IO.File.ReadAllText(fileName);
             return JsonSerializer.Deserialize<List<Teacher>>(readText);
         }
-        // GET: /<controller>/
-        public IActionResult Index()
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Course course)
         {
+            var existingCourse = courses.FirstOrDefault(t => t.Id == course.Id);
+            if (existingCourse == null)
+            {
+                return NotFound();
+            }
+            existingCourse.Id = course.Id;
+            existingCourse.Name = course.Name;
+            existingCourse.Lecturer = course.Lecturer;
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(courses, options);
+            System.IO.File.WriteAllText("course", jsonString);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public IActionResult EditCourse()
+        {
+            List<Teacher>? teachers = LoadTeacherFromFile("data.json");
+
+            ViewBag.SelectTeachers = teachers;
             return View();
         }
+
+        public IActionResult Delete(int Id)
+        {
+            var courses = LoadCourseFromFile("course.json");
+            var searchCourse = courses.FirstOrDefault(t => t.Id == Id);
+            courses.Remove(searchCourse);
+
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(courses, options);
+            //Save file
+            using (StreamWriter writer = new StreamWriter("course.json"))
+            {
+                writer.Write(jsonString);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
     }
 }

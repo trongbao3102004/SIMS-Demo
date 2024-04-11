@@ -8,6 +8,20 @@
             <td>Action</td>
         </tr>
     </thead>
-
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Lecturer</td>
+                <td>
+                    <a class="btn btn-sm btn-primary"
+                       href="@Url.Action("Delete","Course",new {id=item.Id})">Delete</a>
+                    <a class="btn btn-sm btn-primary"
+                       href="@Url.Action("Edit","Course",new {id=item.Id})">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 <a asp-action="CreateCourse" asp-controller="Course">Create Course</a>
