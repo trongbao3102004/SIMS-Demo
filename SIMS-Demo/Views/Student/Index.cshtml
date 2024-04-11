@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Student>
+<h1> @ViewBag.UserName @ViewBag.Role</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Date of Birth</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.DoB</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary"
+                               href="@Url.Action("Delete","Student",new {id=item.Id})">Delete</a>
+                            <a class="btn btn-sm btn-primary"
+                                href="@Url.Action("Edit","Student",new {id=item.Id})">Edit</a>
+                        </td>
+                    </tr>
+        }
+    </tbody>
+</table>
+<ul>
+    <li>
+
+    </li>
+</ul>
