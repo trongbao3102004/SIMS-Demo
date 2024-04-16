@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<Course>
+<h1>Course Management @ViewBag.UserName @ViewBag.Role</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Course Name</td>
+            <td>Lecturer</td>
+            <td>Class</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Lecturer</td>
+                <td>@item.Class</td>
+                <td>
+                    @* <a class="btn btn-sm btn-primary"
+                       href="@Url.Action("Delete","Course",new {id=item.Id})">Delete</a>
+                    <a class="btn btn-sm btn-primary"
+                       href="@Url.Action("Edit","Course",new {id=item.Id})">Edit</a> *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@* <a asp-action="CreateCourse" asp-controller="Course">Create Course</a> *@

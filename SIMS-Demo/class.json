@@ -1,0 +1,19 @@
+[
+    {
+        "Id": "IT0602",
+        "NumberofStudents": 30,
+        "Term": 5
+    },
+    {
+        "Id": "IT0603",
+        "NumberofStudents": 28,
+        "Term": 4
+    },
+    {
+        "Id": "IT0601",
+        "NumberofStudents": 31,
+        "Term": 3
+    }
+
+
+]
