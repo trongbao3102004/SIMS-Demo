@@ -50,6 +50,13 @@ namespace SIMS_IT0602.Controllers
             courses = LoadCourseFromFile("course.json");
             return View(courses);
         }
+        public ActionResult ManageCourse(int id)
+        {
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            courses = LoadCourseFromFile("course.json");
+            return View(courses);
+        }
         public List<Teacher>? LoadTeacherFromFile(string fileName)
         {
             string readText = System.IO.File.ReadAllText(fileName);

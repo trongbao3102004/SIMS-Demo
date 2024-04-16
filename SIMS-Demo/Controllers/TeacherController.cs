@@ -55,6 +55,14 @@ namespace SIMS_Demo.Controllers
             return View(teachers);
         }
 
+        public ActionResult ManageTeacher()
+        {
+            ViewBag.UserName = HttpContext.Session.GetString("UserName");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            teachers = LoadTeacherFromFile("data.json");
+            return View(teachers);
+        }
+
         // GET: TeacherController/Details/5
         public ActionResult Details(int id)
         {

@@ -4,21 +4,35 @@
 @{
 }
 @model User
-<h1 style="color:oragne">Login</h1>
+<h1 style="color:orange"></h1>
 @using (Html.BeginForm("Login", "Authentication", FormMethod.Post))
 {
-        <div>
-        @Html.LabelFor(m => m.UserName, new {Class="control-Label"})
+        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center">Login</h2>
+                <form asp-action="Login" asp-controller="Account" method="post">
+                    <div class="form-group mb-3">
+                        <label asp-for="UserName" class="control-label d-none"></label>
+                        <input asp-for="UserName" class="form-control" placeholder="User Name" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Pass" class="control-label d-none"></label>
+                        <input asp-for="Pass" class="form-control" placeholder="Password" />
+                    </div>
+                    <div class="text-danger">
+                        @ViewBag.error
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        @Html.TextBoxFor(m => m.UserName, new {placeholder = "User Name",Class="form-control"})
-        </div>
-        <div>
-        @Html.LabelFor(m => m.Pass,  new {Class="control-Label"})
-        @Html.PasswordFor(m => m.Pass, new {placeholder = "Password",Class="form-control"})
-        </div>
-        <div style="color:red"> 
-            @ViewBag.error
-        </div>
-        <br />
-        <input type="submit" value="Login" class="btn btn-primary" />
+
+
+
 }

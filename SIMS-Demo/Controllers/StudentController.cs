@@ -66,7 +66,7 @@ namespace SIMS_Demo.Controllers
             ViewBag.UserName = HttpContext.Session.GetString("UserName");
             ViewBag.Role = HttpContext.Session.GetString("Role");
             students = LoadStudentFromFile("student.json");
-            return View();
+            return View(students);
         }
 
         // GET: StudentController/Create

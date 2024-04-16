@@ -3,12 +3,12 @@
     "Id": 1,
     "UserName": "Lili",
     "Pass": "123",
-    "Role": "teacher"
+    "Role": "Admin"
   },
   {
     "Id": 2,
     "UserName": "Hung",
     "Pass": "123",
-    "Role": "student"
+    "Role": "Student"
   }
 ]
